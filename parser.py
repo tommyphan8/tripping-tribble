@@ -31,15 +31,18 @@ def getLetterCount(message, letterCount):
 #@message - string that the function will parse and count
 #@wordCount - set that stores frequency of words
 def getWordCount(message, wordCount):
+	message = message.replace("?", "")
 	wordArray = message.upper().split()
 	for word in wordArray:
 		if word == "THE":
-			wordCount[word] +=1
+			wordCount[word] += 1
 		elif word == "WHEN":
 			wordCount[word] += 1
 	#print (wordCount)
 
-#checks if 
+#checks for largest word
+#@message -string that the function will parse and count
+#@largestWord - list that will store the largest word
 def getBiggestWord(message, largestWord):
 	wordArray = message.upper().split()
 	for word in wordArray:
@@ -51,6 +54,16 @@ def getBiggestWord(message, largestWord):
 			del largestWord[:]
 			largestWord.append(word)
 	#print largestWord
+
+def graphFrequency(letterCount):
+	
+	t = letterCount.values()
+	totalSum = sum(t)
+	t[:] = [float(x) / totalSum for x in t]
+	t[:] = [x * 100 for x in t]
+	plt.bar(range(len(letterCount)), t, align='center')
+	plt.xticks(range(len(letterCount)), letterCount.keys())
+	plt.show()
 
 def main(file, LETTERS, letterCount, wordCount, largestWord):
 
@@ -72,6 +85,7 @@ def main(file, LETTERS, letterCount, wordCount, largestWord):
 						
 	print largestWord
 	print wordCount
+	graphFrequency(letterCount)
 	print letterCount
 	print("Completed Successfully")
 
