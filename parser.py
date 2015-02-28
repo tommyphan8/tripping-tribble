@@ -55,7 +55,7 @@ def getBiggestWord(message, largestWord):
 			largestWord.append(word)
 	#print largestWord
 
-#Disregard
+#Disregard this function
 #def graphFrequency(letterCount):
 	
 	#t = letterCount.values()
